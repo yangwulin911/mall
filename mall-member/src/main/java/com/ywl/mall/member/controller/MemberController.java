@@ -1,20 +1,16 @@
 package com.ywl.mall.member.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.ywl.mall.member.entity.MemberEntity;
-import com.ywl.mall.member.service.MemberService;
 import com.ywl.common.utils.PageUtils;
 import com.ywl.common.utils.R;
+import com.ywl.mall.member.entity.MemberEntity;
+import com.ywl.mall.member.feign.CouponFeignService;
+import com.ywl.mall.member.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -25,10 +21,26 @@ import com.ywl.common.utils.R;
  * @date 2020-06-01 21:16:04
  */
 @RestController
-@RequestMapping("member/member")
+@RequestMapping("/member/member")
 public class MemberController {
-    @Autowired
-    private MemberService memberService;
+
+    private final MemberService memberService;
+
+    private final CouponFeignService couponFeignService;
+
+    public MemberController(CouponFeignService couponFeignService, MemberService memberService) {
+        this.couponFeignService = couponFeignService;
+        this.memberService = memberService;
+    }
+
+    @RequestMapping("/coupons")
+    public R memberList() {
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("张三");
+
+        R r = couponFeignService.memberCoupons();
+        return Objects.requireNonNull(R.ok().put("member", memberEntity)).put("coupons", r.get("coupons"));
+    }
 
     /**
      * 列表
