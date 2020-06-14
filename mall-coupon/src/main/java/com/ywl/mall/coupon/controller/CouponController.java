@@ -1,23 +1,17 @@
 package com.ywl.mall.coupon.controller;
 
+import com.ywl.common.utils.PageUtils;
+import com.ywl.common.utils.R;
+import com.ywl.mall.coupon.entity.CouponEntity;
+import com.ywl.mall.coupon.service.CouponService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.ywl.mall.coupon.entity.CouponEntity;
-import com.ywl.mall.coupon.service.CouponService;
-import com.ywl.common.utils.PageUtils;
-import com.ywl.common.utils.R;
 
 
 

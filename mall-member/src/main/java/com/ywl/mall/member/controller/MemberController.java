@@ -5,7 +5,6 @@ import com.ywl.common.utils.R;
 import com.ywl.mall.member.entity.MemberEntity;
 import com.ywl.mall.member.feign.CouponFeignService;
 import com.ywl.mall.member.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
